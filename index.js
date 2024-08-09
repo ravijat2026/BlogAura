@@ -36,12 +36,27 @@ const connectDB = async() => {
 
 //middlewares
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://blog-aura-frontend.vercel.app"
+];
+
 dotenv.config()
 
 app.use(express.json())
 app.use("/images",express.static(path.join(__dirname,"/images")))
 
-app.use(cors({origin: "http://localhost:5173",credentials:true}))
+app.use(cors({
+  origin: function(origin, callback) {
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
+
 app.use(cookieParser())
 
 app.use('/api/auth',authRoute)
