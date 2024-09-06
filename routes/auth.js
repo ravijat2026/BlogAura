@@ -3,12 +3,12 @@ const router=express.Router()
 const User=require('../models/User')
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
-const {sendVerificationEmail} = require('../utils/mailer')
+// const {sendVerificationEmail} = require('../utils/mailer')
 
-// Generate a 6-digit verification code
-const generateVerificationCode = () => {
-    return Math.floor(100000 + Math.random() * 900000).toString();
-  };
+// // Generate a 6-digit verification code
+// const generateVerificationCode = () => {
+//     return Math.floor(100000 + Math.random() * 900000).toString();
+//   };
 
 //REGISTER
 router.post("/register",async(req,res)=>{
@@ -18,13 +18,13 @@ router.post("/register",async(req,res)=>{
         const hashedPassword=await bcrypt.hashSync(password,salt)
 
          // Generate verification code
-        const verificationCode = generateVerificationCode();
+        // const verificationCode = generateVerificationCode();
 
-        const newUser=new User({username,email,password:hashedPassword , verificationCode})
+        const newUser=new User({username,email,password:hashedPassword})
         const savedUser=await newUser.save()
 
         // Send verification email
-        sendVerificationEmail(email, verificationCode);
+        // sendVerificationEmail(email, verificationCode);
 
         res.status(200).json({ message: 'Registration successful! Please check your email to verify your account.', user: savedUser });
 
@@ -82,10 +82,6 @@ router.post("/login",async (req,res)=>{
             return res.status(404).json("User not found!")
         }
 
-        if (!user.isVerified) {
-            console.log('Email not verified for user:', req.body.email);
-            return res.status(403).json("Please verify your email first!");
-        }
     
         const match=await bcrypt.compare(req.body.password,user.password)
         
