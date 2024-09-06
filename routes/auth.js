@@ -36,38 +36,38 @@ router.post("/register",async(req,res)=>{
 })
 
 // Email Verification
-router.post('/verify-email', async (req, res) => {
-    try {
-        const { email, verificationCode } = req.body;
-        const user = await User.findOne({ email });
+// router.post('/verify-email', async (req, res) => {
+//     try {
+//         const { email, verificationCode } = req.body;
+//         const user = await User.findOne({ email });
 
-        if (!user) {
-            console.log(`User not found for email: ${email}`);
-            return res.status(404).json({ message: 'User not found!' });
-        }
+//         if (!user) {
+//             console.log(`User not found for email: ${email}`);
+//             return res.status(404).json({ message: 'User not found!' });
+//         }
 
-        if (user.verificationCode === verificationCode) {
-            user.isVerified = true;
-            user.verificationCode = '';  // Clear the verification code
-            const updatedUser = await user.save();
+//         if (user.verificationCode === verificationCode) {
+//             user.isVerified = true;
+//             user.verificationCode = '';  // Clear the verification code
+//             const updatedUser = await user.save();
             
-            // Check if the save operation was successful
-            if (updatedUser.isVerified) {
-                console.log(`Email verified successfully for user: ${email}`);
-                res.status(200).json({ message: 'Email verified successfully!' });
-            } else {
-                console.log(`Failed to update user verification status for email: ${email}`);
-                res.status(500).json({ message: 'Failed to verify email. Please try again.' });
-            }
-        } else {
-            console.log(`Incorrect verification code for email: ${email}`);
-            res.status(400).json({ message: 'Incorrect verification code!' });
-        }
-    } catch (err) {
-        console.log(`Error verifying email for email: ${email}`, err);
-        res.status(500).json(err);
-    }
-});
+//             // Check if the save operation was successful
+//             if (updatedUser.isVerified) {
+//                 console.log(`Email verified successfully for user: ${email}`);
+//                 res.status(200).json({ message: 'Email verified successfully!' });
+//             } else {
+//                 console.log(`Failed to update user verification status for email: ${email}`);
+//                 res.status(500).json({ message: 'Failed to verify email. Please try again.' });
+//             }
+//         } else {
+//             console.log(`Incorrect verification code for email: ${email}`);
+//             res.status(400).json({ message: 'Incorrect verification code!' });
+//         }
+//     } catch (err) {
+//         console.log(`Error verifying email for email: ${email}`, err);
+//         res.status(500).json(err);
+//     }
+// });
 
   
   
