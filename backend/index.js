@@ -2,10 +2,8 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
-dotenv.config();
 import path from 'path';
 import multer from 'multer';
-import { fileURLToPath } from 'url';
 
 import { connectDB } from './db/connectDB.js';
 
@@ -17,23 +15,29 @@ import postsRoutes from './routes/posts.js';
 
 import commentsRoutes from './routes/comments.js'
 
+dotenv.config();
 
-const app = express();
 const PORT = process.env.PORT || 5000;
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename)
+connectDB();
+
+const app = express();
+
+
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}))
 
 app.use(cors({
-    origin: "https://blog-aura.vercel.app",
+    origin: ["http://localhost:5174","https://blog-aura.vercel.app"],
     credentials: true,
 }))
 
-app.use(express.json());
-
-app.use("/images",express.static(path.join(__dirname,"/images")))
-
 app.use(cookieParser());
+
+const __dirname = path.resolve()
+app.use("/images",express.static(path.join(__dirname + "/images")))
+
 
 app.use("/api/auth",authRoutes);
 app.use("/api/users",usersRoutes);
@@ -59,6 +63,5 @@ app.post("/api/upload",upload.single("file"),(req,res)=>{
 
 
 app.listen(PORT,()=>{
-    connectDB();
     console.log(`Server is running on port ${PORT}`)
 })
