@@ -1,24 +1,11 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "package.json",
-        "use": "@vercel/node"
-      }
-    ],
-    "env": {
-      "VITE_API": "https://blogaura.onrender.com/api",
-      "VITE_IMAGE_URL": "https://blogaura.onrender.com/images/"
-    },
     "rewrites": [
-      {
-        "source": "/api/(.*)",
-        "destination": "https://blogaura.onrender.com/api/$1"
-      },
-      {
-        "source": "/images/(.*)",
-        "destination": "https://blogaura.onrender.com/images/$1"
-      }
-    ]
+      { "source": "/api/(.*)", "destination": "https://blogaura.onrender.com/api/$1" },
+      { "source": "/images/(.*)", "destination": "https://blogaura.onrender.com/images/$1" },
+      { "source": "/(.*)", "destination": "/index.html" }
+    ],
+    "buildCommand": "npm run build",
+    "outputDirectory": "dist",
+    "framework": "vite"
   }
   
