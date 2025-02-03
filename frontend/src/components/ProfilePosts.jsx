@@ -1,4 +1,3 @@
-import {IF} from '../url.js'
 
 const ProfilePosts = ({p}) => {
   // console.log(p)
@@ -6,7 +5,7 @@ const ProfilePosts = ({p}) => {
     <div className="w-full flex flex-col md:flex-row justify-center mt-8 border shadow-xl rounded-lg p-2">
     {/* left */}
     <div className="md:w-[35%] h-[200px] flex justify-center items-center">
-    <img src={IF+p.photo} alt="" className="h-full w-full object-cover"/>
+    <img src={p.photo} alt="" className="h-full w-full object-cover"/>
     </div>
     {/* right */}
     <div className="flex mt-2 md:ml-6 flex-col items-start md:w-[65%]">
