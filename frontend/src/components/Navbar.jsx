@@ -14,31 +14,36 @@ const Navbar = () => {
   const showMenu = () => setMenu(!menu);
 
   return (
-    <div className="flex items-center justify-between px-6 md:px-[200px] py-4">
-      <h1 className="text-lg md:text-3xl font-bold text-teal-600">
+    <>
+    <div className="bg-gray-800 text-white h-[64px] flex items-center justify-between px-6 py-4 fixed top-0 border-b-2 border-gray-700 w-full z-50">
+      <h1 className="text-lg md:text-3xl font-bold text-teal-400">
         <Link to="/">BlogAura</Link>
       </h1>
       {path === "/" && (
-        <div className="flex justify-between items-center space-x-0 border shadow-lg rounded-xl w-48 h-[40px] md:w-96 p-2 md:p-4">
-          <input
-            onChange={(e) => setPrompt(e.target.value)}
-            className="outline-none md:px-3 w-32"
-            placeholder="Search a post...."
-            type="text"
-          />
-          <p
-            onClick={() => navigate(prompt ? `?search=${prompt}` : "/")}
-            className="cursor-pointer"
-          >
-            <BsSearch />
-          </p>
-        </div>
+        <div
+        className="flex justify-between items-center border shadow-lg rounded-xl w-48 h-10 md:h-12 md:w-96 p-2 md:p-4 hover:shadow-xl transition-shadow duration-300"
+        onClick={() => navigate(prompt ? `?search=${prompt}` : "/")} // Make the entire bar clickable
+        onKeyDown={(e) => e.key === "Enter" && navigate(prompt ? `?search=${prompt}` : "/")} // Add Enter key support
+        tabIndex={0} // Make the div focusable
+        role="button" // Add role for accessibility
+      >
+        <input
+          onChange={(e) => setPrompt(e.target.value)}
+          className="outline-none md:px-3 w-32 flex-grow bg-transparent"
+          placeholder="Search a post...."
+          type="text"
+          onKeyDown={(e) => e.key === "Enter" && navigate(prompt ? `?search=${prompt}` : "/")} // Add Enter key support for input
+        />
+        <p className="cursor-pointer text-gray-500 hover:text-gray-700 transition-colors duration-300">
+          <BsSearch />
+        </p>
+      </div>
       )}
 
-      <div className="hidden md:flex items-center justify-center space-x-2 md:space-x-4">
+      {/* <div className="hidden md:flex items-center justify-center space-x-2 md:space-x-4">
         {isAuthenticated ? (
           <>
-            <h3 className="text-black text-lg hover:scale-105 duration-300 cursor-pointer md:p-4">
+            <h3 className="text-lg hover:scale-105 duration-300 cursor-pointer md:p-4">
               <Link to="/write">Write</Link>
             </h3>
             <div onClick={showMenu}>
@@ -58,7 +63,7 @@ const Navbar = () => {
             </h3>
           </>
         )}
-      </div>
+      </div> */}
 
       <div onClick={showMenu} className="md:hidden text-lg">
         <p className="cursor-pointer relative">
@@ -67,6 +72,8 @@ const Navbar = () => {
         {menu && <Menu />}
       </div>
     </div>
+    <div className="hidden md:flex"><Menu/></div>
+    </>
   );
 };
 

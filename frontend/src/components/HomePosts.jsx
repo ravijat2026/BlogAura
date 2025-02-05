@@ -2,7 +2,7 @@ import React from 'react';
 
 const HomePosts = ({ post }) => {
   return (
-    <div className="w-full flex flex-col md:flex-row justify-center mt-8 border shadow-xl rounded-lg p-2">
+    <div className="w-full flex flex-col bg-gray-800 md:flex-row justify-center mt-8 border border-gray-600 shadow-xl rounded-lg p-2 text-white">
       {/* Left */}
       <div className="md:w-[35%] h-[200px] flex justify-center items-center">
         <img src={post.photo} alt="" className="h-full w-full object-cover" />
@@ -12,7 +12,7 @@ const HomePosts = ({ post }) => {
         <h1 className="text-2xl font-bold md:mb-2 mb-1 md:text-3xl">
           {post.title}
         </h1>
-        <div className="flex flex-col md:flex-row mb-2 text-sm font-semibold text-gray-500 md:mb-4">
+        <div className="flex flex-col md:flex-row mb-2 text-sm font-semibold text-gray-400 md:mb-4">
           <p className='text-lg'>@{post.name}</p>
           <div className="flex space-x-6 text-sm">
             <p>{new Date(post.updatedAt).toString().slice(0, 15)}</p>

@@ -48,7 +48,7 @@ const MyBlogs = () => {
 
 
     <div>
-        <div className="px-8 md:px-[200px] min-h-[80vh]">
+        <div className="bg-gradient-to-tl from-[#1f1f20] to-[#131f2e] px-8 md:px-[200px] min-h-screen mt-[64px] py-1 md:ml-64">
         {loader?<div className="h-[40vh] flex justify-center items-center"><Loader/></div>:!noResults?
          posts.map((post)=>(
           <>

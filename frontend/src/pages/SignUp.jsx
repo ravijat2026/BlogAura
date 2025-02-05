@@ -25,16 +25,16 @@ const SignUp = () => {
 		}
 	};
 	return (
-		<div className="mx-auto flex items-center justify-center">
+		<div className="bg-gradient-to-tl from-[#1f1f20] to-[#131f2e] mx-auto flex items-center justify-center h-screen z-0 md:ml-64">
 		<motion.div
 			initial={{ opacity: 0, y: 20 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.5 }}
-			className='max-w-md w-full bg-gray-200 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl 
+			className='max-w-md w-full bg-gray-700 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl 
 			overflow-hidden'
 		>
 			<div className='p-8'>
-				<h2 className='text-3xl font-bold mb-6 text-center bg-gradient-to-r from-blue-400 to-blue-300 text-transparent bg-clip-text'>
+				<h2 className='text-3xl font-bold mb-6 text-center text-white'>
 					Create Account
 				</h2>
 
@@ -64,10 +64,8 @@ const SignUp = () => {
 					<PasswordStrengthMeter password={password} />
 
 					<motion.button
-						className='mt-5 w-full py-3 px-4 bg-gradient-to-r from-blue-300 to-emerald-600 text-white 
-						font-bold rounded-lg shadow-lg hover:from-blue-600
-						hover:to-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2
-						 focus:ring-offset-gray-900 transition duration-200'
+						className='mt-5 w-full py-3 px-4 bg-teal-400 text-white 
+						font-bold rounded-lg shadow-lg focus:outline-none focus:ring-2 transition duration-200'
 						whileHover={{ scale: 1.02 }}
 						whileTap={{ scale: 0.98 }}
 						type='submit'
@@ -77,10 +75,10 @@ const SignUp = () => {
 					</motion.button>
 				</form>
 			</div>
-			<div className='px-8 py-4 bg-gray-300 bg-opacity-50 flex justify-center'>
-				<p className='text-sm text-gray-800'>
+			<div className='px-8 py-4 bg-gray-600 bg-opacity-50 flex justify-center'>
+				<p className='text-sm text-white'>
 					Already have an account?{" "}
-					<Link to={"/login"} className='text-blue-400 hover:underline'>
+					<Link to={"/login"} className='text-teal-400 hover:underline'>
 						Login
 					</Link>
 				</p>

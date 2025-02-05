@@ -63,14 +63,14 @@ const EmailVerification = () => {
 	}, [code]);
 
 	return (
-		<div className='max-w-md w-full bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden'>
+		<div className='bg-gradient-to-tl from-[#1f1f20] to-[#131f2e] bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden flex justify-center items-center h-screen z-0 md:ml-64'>
 			<motion.div
 				initial={{ opacity: 0, y: -50 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
-				className='bg-gray-200 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-2xl p-8 w-full max-w-md'
+				className='bg-gray-700 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-2xl p-8 w-full max-w-md'
 			>
-				<h2 className='text-3xl font-bold mb-6 text-center bg-gradient-to-r from-blue-400 to-blue-500 text-transparent bg-clip-text'>
+				<h2 className='text-3xl font-bold mb-6 text-center text-white'>
 					Verify Your Email
 				</h2>
 				<p className='text-center text-gray-300 mb-6'>Enter the 6-digit code sent to your email address.</p>
@@ -96,7 +96,7 @@ const EmailVerification = () => {
 						whileTap={{ scale: 0.95 }}
 						type='submit'
 						disabled={isLoading || code.some((digit) => !digit)}
-						className='w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3 px-4 rounded-lg shadow-lg hover:from-blue-600 hovbluemerald-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focblue-opacity-50 disabled:opacity-50'
+						className='w-full bg-teal-400 text-white font-bold py-3 px-4 rounded-lg shadow-lg  focblue-opacity-50 disabled:opacity-50'
 					>
 						{isLoading ? "Verifying..." : "Verify Email"}
 					</motion.button>

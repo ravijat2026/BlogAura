@@ -49,7 +49,7 @@ const Home = () => {
     
     <>
     
-<div className="px-8 md:px-[200px]">
+<div className="px-8 py-1 md:ml-64 mt-[64px] bg-gradient-to-tl from-[#1f1f20] to-[#131f2e] min-h-screen">
         {loader?<div className="min-h-screen flex justify-center items-center w-full"><LoadingSpinner/></div>:!noResults?
         posts.map((post)=>(
           <>
